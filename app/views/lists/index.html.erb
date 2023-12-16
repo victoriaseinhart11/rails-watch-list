@@ -1,0 +1,10 @@
+<h2>Lists</h2>
+<p><%= link_to "Create List", new_list_path %></p>
+<ul>
+  <% @lists.each do |list| %>
+    <li><%= link_to list.name, list_path(list) %><%= link_to "X",
+  list_path(list),
+  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+%></li>
+  <% end %>
+</ul>

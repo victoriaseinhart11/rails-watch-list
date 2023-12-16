@@ -1,0 +1,10 @@
+<h2>New bookmark for <%= @list.name %> list</h2>
+
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%#= f.input :movie_id %>
+  <%= f.association :movie %>
+  <%= f.input :comment %>
+  <%= f.submit "Add bookmark"%>
+<% end %>
+
+<p><%= link_to @list.name, list_path(@list.id) %></p>

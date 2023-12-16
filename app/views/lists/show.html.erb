@@ -1,0 +1,21 @@
+<div class="container">
+  <h2 class="text-center"><%= @list.name %> list</h2>
+  <p><%= link_to "Lists", lists_path, class: "btn btn-primary" %></p>
+  <hr>
+  <%= link_to "Create Bookmark", new_list_bookmark_path(@list.id), class: "btn btn-primary" %>
+  <div class="container d-flex">
+    <% @list.bookmarks.each do |bookmark| %>
+      <% @movie = Movie.find(bookmark.movie_id)  %>
+    <div class="card m-3" style="width: 18rem;">
+      <img src=<%= @movie.poster_url %> class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"><%= @movie.title %></h5>
+        <p class="card-text"><%= @movie.overview %></p>
+        <p><i class="fa-solid fa-star"></i> <%= @movie.rating %></p>
+        <p class="card-text"><i class="fa-solid fa-quote-right"></i> <%= bookmark.comment %></p>
+        <%= link_to "X", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
